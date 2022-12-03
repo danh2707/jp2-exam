@@ -1,49 +1,49 @@
-public class book {
-    String EnrolID, FirstName, LastName;
-    Integer Age;
+public class Book {
+    String Bookid, BookName, Author;
+    Integer Price;
 
     //contructor
-    public book(){
+    public Book() {
 
     }
-    public book(String enrolID, String firstName, String lastName, Integer age) {
-        EnrolID = enrolID;
-        FirstName = firstName;
-        LastName = lastName;
-        Age = age;
+
+    public Book(String BookId, String BookName, String Author, Integer Price) {
+        BookId = Bookid;
+        BookName = BookName;
+        Author = Author;
+        Price = Price;
     }
 
     //getter & setter
     public String getEnrolID() {
-        return EnrolID;
+        return Bookid;
     }
 
-    public void setEnrolID(String enrolID) {
-        EnrolID = enrolID;
+    public void setEnrolID(String Bookid) {
+        Bookid = Bookid;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return BookName;
     }
 
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
+    public void setFirstName(String BookName) {
+        BookName = BookName;
     }
 
     public String getLastName() {
-        return LastName;
+        return Author;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setLastName(String Author) {
+        Author = Author;
     }
 
     public Integer getAge() {
-        return Age;
+        return Price;
     }
 
-    public void setAge(Integer age) {
-        Age = age;
+    public void setAge(Integer Price) {
+        Price = Price;
     }
-
 }

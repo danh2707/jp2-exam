@@ -1,62 +1,60 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class bookManage {
-    private ArrayList<book> studentsList = new ArrayList<book>();
+public class BookManage {
+    private ArrayList<Book> BookList = new ArrayList<Book>();
 
     Scanner sc = new Scanner(System.in);
     //input
     public String inputID() {
-        System.out.print("Input student ID: ");
+        System.out.print("Input book ID: ");
         String ID = sc.nextLine();
         return ID;
     }
     public String inputFirstName() {
-        System.out.print("Input student first name: ");
+        System.out.print("Input book first name: ");
         String firstname = sc.nextLine();
         return firstname;
     }
     public String inputLastName() {
-        System.out.print("Input student last name: ");
+        System.out.print("Input book last name: ");
         String lastname = sc.nextLine();
         return lastname;
     }
     public int inputAge() {
-        System.out.print("Input student age: ");
+        System.out.print("Input book age: ");
         while (true) {
             try {
                 int age = sc.nextInt();
-                if (age < 0 && age > 150) {  //ít hơn 150 tuổi cho đỡ tài nguyên :v
+                if (age < 0 && age > 150) {
                     throw new NumberFormatException("age is greater than 0 and must be less than 200");
                 }
                 return age;
             } catch (NumberFormatException ex) {
-                System.out.print("Invalid! Input student ID again: ");
+                System.out.print("Invalid! Input book ID again: ");
             }
         }
     }
 
-    //phương thức
-    public void addStudent(){
+    public void addBook(){
         String ID = inputID();
         String firstname = inputFirstName();
         String lastname = inputLastName();
         int age = inputAge();
 
-        book student = new book(ID, firstname, lastname, age);
-        studentsList.add(student);
+        Book student = new Book(ID, firstname, lastname, age);
+        BookList.add(student);
     }
 
-    //save students
-    public void saveStudents() throws IOException {
+
+    public void saveBook() throws IOException {
         try {
-            FileOutputStream fos = new FileOutputStream("students.txt");
+            FileOutputStream fos = new FileOutputStream("book.txt");
             DataOutputStream dos = new DataOutputStream(fos);
 
             //read file
-            FileInputStream fis = new FileInputStream("students.txt");
+            FileInputStream fis = new FileInputStream("book.txt");
             DataInputStream dis = new DataInputStream(fis);
             String txt = dis.readLine();
             while (txt != null) {
@@ -76,23 +74,23 @@ public class bookManage {
         FileInputStream fin = new FileInputStream(f);
         ObjectInputStream objin = new ObjectInputStream(fin);
 
-        studentsList = new ArrayList<book>();
-        studentsList = (ArrayList)objin.readObject();
+        BookList = new ArrayList<Book>();
+        BookList = (ArrayList)objin.readObject();
 
-        showStudent();
+        showBook();
 
         objin.close();
         fin.close();
     }
 
-    public void showStudent() {
-        if (studentsList.size()==0){
+    public void showBook() {
+        if (BookList.size()==0){
             System.out.println("List is empty");
         }
         else{
             System.out.println("|   EnrolID   |      Full name      |  Age  |");
             System.out.print("=============================================\n");
-            for (book st : studentsList) {
+            for (Book st : BookList) {
                 System.out.format("| %11s | %19s | %5d |\n",st.getEnrolID(),st.getFirstName() + " " + st.getLastName(),st.getAge());
             }
         }
